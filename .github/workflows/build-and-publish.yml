@@ -31,6 +31,13 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
       
+    - name: Lint Code Base
+      uses: github/super-linter@v4
+      env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: $default-branch
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
     - name: Check if submodule has been pulled
       run: |
            cd opamp-spec/
