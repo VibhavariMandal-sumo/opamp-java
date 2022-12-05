@@ -19,6 +19,7 @@ dependencyResolutionManagement {
 pluginManagement {
   plugins {
     id("com.google.protobuf") version "0.8.19"
+    id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
   }
 }
 
