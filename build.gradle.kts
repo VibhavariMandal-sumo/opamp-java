@@ -19,13 +19,6 @@ dependencies {
 description = "Java Bindings for the Opamp Protocol"
 group = "io.opentelemetry"
 
-// publishing {
-//  publications.create<MavenPublication>("lib") {
-//    from(components["java"])
-//  }
-//  repositories.maven("/tmp/opamp-java")
-// }
-
 tasks.jar {
   from(sourceSets.main.get().output)
   dependsOn(configurations.runtimeClasspath)
