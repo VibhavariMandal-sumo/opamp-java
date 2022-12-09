@@ -48,6 +48,8 @@ jobs:
     
     - name: Extract the jar to see the contents
       run: |
-           ls /tmp/opamp-java/io/opentelemetry/opamp-java/1.0.0/opamp-java-1.0.0.jar
-           unzip /tmp/opamp-java/io/opentelemetry/opamp-java/1.0.0/opamp-java-1.0.0.jar
+           cd build/repos/releases/io/opentelemetry/opamp-java/1.0.0-SNAPSHOT/
+           ls
+           #ls /tmp/opamp-java/io/opentelemetry/opamp-java/1.0.0/opamp-java-1.0.0.jar
+           #unzip /tmp/opamp-java/io/opentelemetry/opamp-java/1.0.0/opamp-java-1.0.0.jar
 

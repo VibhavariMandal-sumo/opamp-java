@@ -7,19 +7,12 @@ plugins {
 publishing {
     publications {
         register<MavenPublication>("mavenPublication") {
-            val publication = this
-            groupId = "io.opentelemetry"
             afterEvaluate {
-                // not available until evaluated.
                 artifactId = base.archivesName.get()
                 pom.description.set(project.description)
-                val versionParts = publication.version.split('-').toMutableList()
-                versionParts[0] += "-alpha"
-                publication.version = versionParts.joinToString("-")
             }
 
             from(components["java"])
-
 
             versionMapping {
                 allVariants {
