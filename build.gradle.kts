@@ -1,8 +1,7 @@
-
 plugins {
+  id("otel.java-conventions")
   id("java-library")
   id("otel.publish-conventions")
-  id("otel.java-conventions")
 }
 
 apply(from = "version.gradle.kts")
