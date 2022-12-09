@@ -1,35 +1,11 @@
-import java.time.Duration
 
 plugins {
-  id("otel.java-conventions")
   id("java-library")
-  id("maven-publish")
-  //id("io.github.gradle-nexus.publish-plugin")
+  id("otel.publish-conventions")
+  id("otel.java-conventions")
 }
 
-//apply(from = "version.gradle.kts")
-//
-//nexusPublishing {
-//  packageGroup.set("io.opentelemetry")
-//
-//  repositories {
-//    sonatype {
-//      username.set(System.getenv("SONATYPE_USER"))
-//      password.set(System.getenv("SONATYPE_KEY"))
-//    }
-//  }
-//
-//  connectTimeout.set(Duration.ofMinutes(5))
-//  clientTimeout.set(Duration.ofMinutes(5))
-//
-//  transitionCheckOptions {
-//    // We have many artifacts so Maven Central takes a long time on its compliance checks. This sets
-//    // the timeout for waiting for the repository to close to a comfortable 50 minutes.
-//    maxRetries.set(300)
-//    delayBetween.set(Duration.ofSeconds(10))
-//  }
-//}
-
+apply(from = "version.gradle.kts")
 
 repositories {
   mavenCentral()
@@ -40,14 +16,15 @@ dependencies {
   implementation(project(":proto"))
 }
 
+description = "Java Bindings for the Opamp Protocol"
 group = "io.opentelemetry"
 
-publishing {
-  publications.create<MavenPublication>("lib") {
-    from(components["java"])
-  }
-  repositories.maven("/tmp/opamp-java")
-}
+// publishing {
+//  publications.create<MavenPublication>("lib") {
+//    from(components["java"])
+//  }
+//  repositories.maven("/tmp/opamp-java")
+// }
 
 tasks.jar {
   from(sourceSets.main.get().output)
