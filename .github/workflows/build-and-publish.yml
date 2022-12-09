@@ -51,30 +51,3 @@ jobs:
            ls /tmp/opamp-java/io/opentelemetry/opamp-java/1.0.0/opamp-java-1.0.0.jar
            unzip /tmp/opamp-java/io/opentelemetry/opamp-java/1.0.0/opamp-java-1.0.0.jar
 
-  publish-snapshots:
-    name: publish-snapshots${{ (github.ref_name != 'main' || github.repository != 'open-telemetry/opamp-java') && ' (skipped)' || '' }}
-    needs: build
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - id: setup-java
-        name: Set up Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: temurin
-          java-version: 17
-
-      - uses: gradle/gradle-build-action@v2
-        # skipping release branches because the versions in those branches are not snapshots
-        # (also this skips pull requests)
-        # if: ${{ github.ref_name == 'main' && github.repository == 'open-telemetry/opamp-java' }}
-        with:
-          arguments: assemble publishToSonatype
-        env:
-          SONATYPE_USER: ${{ secrets.SONATYPE_USER }}
-          SONATYPE_KEY: ${{ secrets.SONATYPE_KEY }}
-          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-          GPG_PASSWORD: ${{ secrets.GPG_PASSWORD }}
